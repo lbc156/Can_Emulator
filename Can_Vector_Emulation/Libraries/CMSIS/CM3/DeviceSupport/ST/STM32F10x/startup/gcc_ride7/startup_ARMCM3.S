@@ -71,6 +71,7 @@ __HeapLimit:
 	.section .isr_vector
 	.align	2
 	.globl	__isr_vector
+	.equ  BootRAM, 0xF108F85F
 __isr_vector:
 	.long	__StackTop            /* Top of Stack */
 	.long	Reset_Handler         /* Reset Handler */
@@ -88,6 +89,58 @@ __isr_vector:
 	.long	0                     /* Reserved */
 	.long	PendSV_Handler        /* PendSV Handler */
 	.long	SysTick_Handler       /* SysTick Handler */
+	.long 	WWDG_IRQHandler
+	.long 	PVD_IRQHandler
+	.long 	TAMPER_IRQHandler
+	.long 	RTC_IRQHandler
+	.long 	FLASH_IRQHandler
+	.long 	RCC_IRQHandler
+	.long 	EXTI0_IRQHandler
+	.long 	EXTI1_IRQHandler
+	.long 	EXTI2_IRQHandler
+	.long 	EXTI3_IRQHandler
+	.long 	EXTI4_IRQHandler
+	.long 	DMA1_Channel1_IRQHandler
+	.long 	DMA1_Channel2_IRQHandler
+	.long 	DMA1_Channel3_IRQHandler
+	.long 	DMA1_Channel4_IRQHandler
+	.long 	DMA1_Channel5_IRQHandler
+	.long 	DMA1_Channel6_IRQHandler
+	.long 	DMA1_Channel7_IRQHandler
+	.long 	ADC1_2_IRQHandler
+	.long 	USB_HP_CAN1_TX_IRQHandler
+	.long 	USB_LP_CAN1_RX0_IRQHandler
+	.long 	CAN1_RX1_IRQHandler
+	.long 	CAN1_SCE_IRQHandler
+	.long 	EXTI9_5_IRQHandler
+	.long 	TIM1_BRK_IRQHandler
+	.long 	TIM1_UP_IRQHandler
+	.long 	TIM1_TRG_COM_IRQHandler
+	.long 	TIM1_CC_IRQHandler
+	.long 	TIM2_IRQHandler
+	.long 	TIM3_IRQHandler
+	.long 	TIM4_IRQHandler
+	.long 	I2C1_EV_IRQHandler
+	.long 	I2C1_ER_IRQHandler
+	.long 	I2C2_EV_IRQHandler
+	.long 	I2C2_ER_IRQHandler
+	.long 	SPI1_IRQHandler
+	.long 	SPI2_IRQHandler
+	.long 	USART1_IRQHandler
+	.long 	USART2_IRQHandler
+	.long 	USART3_IRQHandler
+	.long 	EXTI15_10_IRQHandler
+	.long 	RTC_Alarm_IRQHandler
+	.long 	USBWakeUp_IRQHandler
+	.long 	0
+	.long 	0
+	.long 	0
+	.long 	0
+	.long 	0
+	.long 	0
+	.long 	0
+	.long 	BootRAM          /* @0x108. This is for boot in RAM mode for
+                            STM32F10x Medium Density devices. */
 
 	/* External interrupts */
 	.long	Default_Handler
@@ -254,5 +307,49 @@ Default_Handler:
 	def_irq_handler	PendSV_Handler
 	def_irq_handler	SysTick_Handler
 	def_irq_handler	DEF_IRQHandler
+	def_irq_handler WWDG_IRQHandler
+	def_irq_handler PVD_IRQHandler
+	def_irq_handler TAMPER_IRQHandler
+	def_irq_handler RTC_IRQHandler
+	def_irq_handler FLASH_IRQHandler
+	def_irq_handler RCC_IRQHandler
+	def_irq_handler EXTI0_IRQHandler
+	def_irq_handler EXTI1_IRQHandler
+	def_irq_handler EXTI2_IRQHandler
+	def_irq_handler EXTI3_IRQHandler
+	def_irq_handler EXTI4_IRQHandler
+	def_irq_handler DMA1_Channel1_IRQHandler
+	def_irq_handler DMA1_Channel2_IRQHandler
+	def_irq_handler DMA1_Channel3_IRQHandler
+	def_irq_handler DMA1_Channel4_IRQHandler
+	def_irq_handler DMA1_Channel5_IRQHandler
+	def_irq_handler DMA1_Channel6_IRQHandler
+	def_irq_handler DMA1_Channel7_IRQHandler
+	def_irq_handler ADC1_2_IRQHandler
+	def_irq_handler USB_HP_CAN1_TX_IRQHandler
+	def_irq_handler USB_LP_CAN1_RX0_IRQHandler
+	def_irq_handler CAN1_RX1_IRQHandler
+	def_irq_handler CAN1_SCE_IRQHandler
+	def_irq_handler EXTI9_5_IRQHandler
+	def_irq_handler TIM1_BRK_IRQHandler
+	def_irq_handler TIM1_UP_IRQHandler
+	def_irq_handler TIM1_TRG_COM_IRQHandler
+	def_irq_handler TIM1_CC_IRQHandler
+	def_irq_handler TIM2_IRQHandler
+	def_irq_handler TIM3_IRQHandler
+	def_irq_handler TIM4_IRQHandler
+	def_irq_handler I2C1_EV_IRQHandler
+	def_irq_handler I2C1_ER_IRQHandler
+	def_irq_handler I2C2_EV_IRQHandler
+	def_irq_handler I2C2_ER_IRQHandler
+	def_irq_handler SPI1_IRQHandler
+	def_irq_handler SPI2_IRQHandler
+	def_irq_handler USART1_IRQHandler
+	def_irq_handler USART2_IRQHandler
+	def_irq_handler USART3_IRQHandler
+	def_irq_handler EXTI15_10_IRQHandler
+	def_irq_handler RTC_Alarm_IRQHandler
+	def_irq_handler USBWakeUp_IRQHandler
+	def_irq_handler BootRAM
 
 	.end
