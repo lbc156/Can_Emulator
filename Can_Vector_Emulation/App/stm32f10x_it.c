@@ -36,6 +36,9 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
+CanRxMsg RxMessage;
+unsigned char volatile Flag_indicate_Rx = 0u;
+uint8_t Check_data[8];
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
@@ -138,6 +141,7 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
+	Timingdelay--;
 }
 
 /******************************************************************************/
@@ -159,6 +163,26 @@ void SysTick_Handler(void)
 /**
   * @}
   */
+
+
+/**
+  * @brief  This function handles CAN1 Handler.
+  * @param  None
+  * @retval None
+  */
+void USB_LP_CAN1_RX0_IRQHandler(void)
+{
+    unsigned int i=0u;
+    CAN_Receive(CAN1, CAN_FIFO0, &RxMessage);
+    if ((RxMessage.StdId == 0x723)&&(RxMessage.IDE == CAN_ID_STD) && (RxMessage.DLC == 8))
+    {
+	    Flag_indicate_Rx = 1u;
+	    for (; i<8; i++)
+	    {
+		    Check_data[i] = RxMessage.Data[i];
+	    }
+    }
+}
 
 /**
   * @}

@@ -30,6 +30,10 @@
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
+extern CanRxMsg RxMessage;
+extern volatile unsigned char Flag_indicate_Rx;
+extern uint8_t Check_data[8];
+extern volatile uint32_t Timingdelay;
 
 void NMI_Handler(void);
 void HardFault_Handler(void);
